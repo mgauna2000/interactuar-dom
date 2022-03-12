@@ -2,7 +2,8 @@ const personas = [];
 
 class Persona{
 
-    constructor(nombre, apellido, documento, edad, paisNacimiento){
+    constructor(parentesco, nombre, apellido, documento, edad, paisNacimiento){
+        this.parentesco = parentesco;
         this.nombre = nombre;
         this.apellido = apellido;
         this.documento = documento;
@@ -15,17 +16,18 @@ class Persona{
 
 function solicitarDatos(){
 
-    let cantidad = 2;
+    let cantidad = parseInt(prompt("Ingrese la cantidad de Familiares que tienes"));
 
     for(let i = 0; i < cantidad; i++){
 
-        const nombre = prompt(`Ingrese el nombre del padre/madre ${i + 1}`);
+        const parentesco = prompt(`Ingrese que miembro de su familia es ${i + 1}`);
+        const nombre = prompt(`Ingrese el nombre${i + 1}`);
         const apellido = prompt(`Ingrese el apellido ${i + 1}`);
         const documento = parseInt(prompt(`Ingrese el numero de documento ${i + 1}`));
         const edad = parseInt(prompt(`Ingrese la edad ${i + 1}`));
         const pais = prompt(`Ingrese el pais donde nacio ${i + 1}`);
 
-        const persona = new Persona(nombre, apellido, documento, edad, pais);
+        const persona = new Persona(parentesco, nombre, apellido, documento, edad, pais);
 
         personas.push(persona);
 
@@ -42,7 +44,8 @@ const renderizar = (arrayPersonas) => {
 
         const tr = document.createElement("tr");
 
-        tr.innerHTML = `<td>${persona.nombre}</td>
+        tr.innerHTML = `<td>${persona.parentesco}</td>
+                        <td>${persona.nombre}</td>
                         <td>${persona.apellido}</td>
                         <td>${persona.documento}</td>
                         <td>${persona.edad}</td>
